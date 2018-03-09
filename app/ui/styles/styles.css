@@ -1,0 +1,10 @@
+.keypad{
+    background-color: aliceblue;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.keypad input{
+    background-color: bisque;
+    font-size: 4rem;
+}
