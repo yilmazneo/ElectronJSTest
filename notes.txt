@@ -1,0 +1,5 @@
+npm install --global --production windows-build-tools
+-- Execute above in cmd as administrator. Necessary for native module rebuild.
+
+electron-rebuild
+electron-packager
