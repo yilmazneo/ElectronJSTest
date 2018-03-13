@@ -1,5 +1,7 @@
 const {app,BrowserWindow} = require("electron");
 
+const sqlite3 = require("sqlite3");
+console.log(sqlite3);
 let window = null;
 app.on("ready",() => {
     window = new BrowserWindow({
