@@ -1,7 +1,7 @@
 import React from 'react'
 import Path from 'path'
 import '../../ui/styles/styles.css'
-import RoundTable from '../../resources/images/roundtable.png'
+//import RoundTable from '../../resources/images/roundtable.png'
 
 export default class LayoutImageDisplayer extends React.Component{
     constructor(props){
@@ -17,7 +17,9 @@ export default class LayoutImageDisplayer extends React.Component{
     render(){        
         return (
             <div className="layout-image-container-item">
-                <img src={RoundTable} />
+                <img src={require('../../resources/images/roundtable.png')} 
+                draggable={true}
+                onDragStart={this.props.drag} />                
             </div>
         )
     }

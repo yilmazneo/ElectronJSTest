@@ -4,19 +4,33 @@ import LayoutImageDisplayer from './layoutimagedisplayer.jsx'
 
 export default class TableLayoutDesigner extends React.Component{
     constructor(props){
-        super(props)
-        this.login = this.login.bind(this)        
+        super(props) 
+        this.drag = this.drag.bind(this);  
+        this.allowDrop = this.allowDrop.bind(this);  
+        this.drop = this.drop.bind(this);
     }    
 
-    login(){
-
+    allowDrop(ev) {
+        ev.preventDefault();
     }
-
+    
+    drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+    
+    drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
 
     render(){        
         return (
             <div className="layout-image-container">
-                <LayoutImageDisplayer />
+                <LayoutImageDisplayer drag={this.drag} />
+                <div id="div1" onDrop={this.drop} onDragOver={this.allowDrop}>
+                    <b>HERE</b>
+                </div>
             </div>
         )
     }

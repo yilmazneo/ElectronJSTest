@@ -18334,20 +18334,45 @@ var TableLayoutDesigner = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (TableLayoutDesigner.__proto__ || Object.getPrototypeOf(TableLayoutDesigner)).call(this, props));
 
-        _this.login = _this.login.bind(_this);
+        _this.drag = _this.drag.bind(_this);
+        _this.allowDrop = _this.allowDrop.bind(_this);
+        _this.drop = _this.drop.bind(_this);
         return _this;
     }
 
     _createClass(TableLayoutDesigner, [{
-        key: 'login',
-        value: function login() {}
+        key: 'allowDrop',
+        value: function allowDrop(ev) {
+            ev.preventDefault();
+        }
+    }, {
+        key: 'drag',
+        value: function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+    }, {
+        key: 'drop',
+        value: function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
     }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
                 'div',
                 { className: 'layout-image-container' },
-                _react2.default.createElement(_layoutimagedisplayer2.default, null)
+                _react2.default.createElement(_layoutimagedisplayer2.default, { drag: this.drag }),
+                _react2.default.createElement(
+                    'div',
+                    { id: 'div1', onDrop: this.drop, onDragOver: this.allowDrop },
+                    _react2.default.createElement(
+                        'b',
+                        null,
+                        'HERE'
+                    )
+                )
             );
         }
     }]);
@@ -18943,10 +18968,6 @@ var _path2 = _interopRequireDefault(_path);
 
 __webpack_require__(14);
 
-var _roundtable = __webpack_require__(35);
-
-var _roundtable2 = _interopRequireDefault(_roundtable);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18954,6 +18975,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//import RoundTable from '../../resources/images/roundtable.png'
 
 var LayoutImageDisplayer = function (_React$Component) {
     _inherits(LayoutImageDisplayer, _React$Component);
@@ -18976,7 +18999,9 @@ var LayoutImageDisplayer = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'layout-image-container-item' },
-                _react2.default.createElement('img', { src: _roundtable2.default })
+                _react2.default.createElement('img', { src: __webpack_require__(35),
+                    draggable: true,
+                    onDragStart: this.props.drag })
             );
         }
     }]);
