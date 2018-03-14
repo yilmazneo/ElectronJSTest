@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import KeyPad from './components/keypad.jsx'
+import KeyPad from './components/tablelayoutdesigner.jsx'
+
 
 
 ReactDOM.render(
-    <KeyPad/>,
+    <KeyPad />,
     document.getElementById('keypad')
 )

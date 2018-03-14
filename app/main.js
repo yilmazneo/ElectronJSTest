@@ -1,7 +1,8 @@
 const {app,BrowserWindow} = require("electron");
 
-const sqlite3 = require("sqlite3");
-console.log(sqlite3);
+var printer = require('printer');
+console.log(printer.getPrinters());
+
 let window = null;
 app.on("ready",() => {
     window = new BrowserWindow({

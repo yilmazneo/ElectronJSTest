@@ -8,3 +8,11 @@
     background-color: bisque;
     font-size: 4rem;
 }
+
+.layout-image-container{
+    display: flex;
+}
+
+.layout-image-container-item{
+    flex-direction: column
+}
