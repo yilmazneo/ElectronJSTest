@@ -18355,7 +18355,9 @@ var TableLayoutDesigner = function (_React$Component) {
         value: function drop(ev) {
             ev.preventDefault();
             var data = ev.dataTransfer.getData("text");
-            ev.target.appendChild(document.getElementById(data));
+            var img = new Image();
+            img.src = data;
+            ev.target.appendChild(img);
         }
     }, {
         key: 'render',

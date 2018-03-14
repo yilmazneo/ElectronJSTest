@@ -21,7 +21,9 @@ export default class TableLayoutDesigner extends React.Component{
     drop(ev) {
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
+        let img = new Image();
+        img.src = data;
+        ev.target.appendChild(img);
     }
 
     render(){        
