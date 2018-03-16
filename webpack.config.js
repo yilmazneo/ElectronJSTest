@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
     entry: './app/jsx/app.jsx',
@@ -29,6 +30,9 @@ module.exports = {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: ['file-loader']
             }         
-        ]
-    }
+        ]        
+    },
+    plugins:[
+        new webpack.IgnorePlugin(new RegExp("^(fs|ipc)$"))
+    ]
 }
