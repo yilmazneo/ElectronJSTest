@@ -985,7 +985,7 @@ var _tablelayoutdesigner2 = _interopRequireDefault(_tablelayoutdesigner);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_tablelayoutdesigner2.default, null), document.getElementById('keypad'));
+_reactDom2.default.render(_react2.default.createElement(_tablelayoutdesigner2.default, { tileCount: '30' }), document.getElementById('keypad'));
 
 /***/ }),
 /* 16 */
@@ -18362,18 +18362,19 @@ var TableLayoutDesigner = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var items = [];
+            for (var i = 0; i < this.props.tileCount; i++) {
+                items.push(_react2.default.createElement('div', { key: i, 'class': 'layout-grid-tile', onDrop: this.drop, onDragOver: this.allowDrop }));
+            }
             return _react2.default.createElement(
                 'div',
-                { className: 'layout-image-container' },
-                _react2.default.createElement(_layoutimagedisplayer2.default, { drag: this.drag }),
+                { className: 'layout-designer' },
+                _react2.default.createElement(_layoutimagedisplayer2.default, { drag: this.drag,
+                    images: ["../../app/resources/images/roundtable.jpg", "../../app/resources/images/rtable-large.jpg", "../../app/resources/images/rtable-small.png"] }),
                 _react2.default.createElement(
                     'div',
-                    { id: 'div1', onDrop: this.drop, onDragOver: this.allowDrop },
-                    _react2.default.createElement(
-                        'b',
-                        null,
-                        'HERE'
-                    )
+                    { id: 'layout-grid' },
+                    items
                 )
             );
         }
@@ -18393,7 +18394,7 @@ exports = module.exports = __webpack_require__(30)(false);
 
 
 // module
-exports.push([module.i, ".keypad{\r\n    background-color: aliceblue;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n\r\n.keypad input[type=\"button\"]{\r\n    background-color: bisque;\r\n    font-size: 4rem;\r\n}\r\n\r\n.layout-image-container{\r\n    display: flex;\r\n}\r\n\r\n.layout-image-container-item{\r\n    flex-direction: column\r\n}", ""]);
+exports.push([module.i, ".keypad{\r\n    background-color: aliceblue;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n\r\n.keypad input[type=\"button\"]{\r\n    background-color: bisque;\r\n    font-size: 4rem;\r\n}\r\n\r\n.layout-image-displayer{\r\n    display: flex;\r\n    flex-flow: column nowrap;\r\n    border: 0.5px solid;\r\n}\r\n\r\n.layout-image-container-item{\r\n    display:block;\r\n}\r\n\r\n.layout-designer{\r\n    display: flex;\r\n    flex-flow: row nowrap;    \r\n}\r\n\r\n#layout-grid{\r\n    display: flex;\r\n    flex-flow: row wrap;\r\n    width: 100%;\r\n    margin-left: 10%;\r\n}\r\n\r\n.layout-grid-tile{\r\n    border: 0.5px solid;\r\n    background-color: azure;\r\n    width:60px;\r\n    height:60px;\r\n}", ""]);
 
 // exports
 
@@ -18986,24 +18987,22 @@ var LayoutImageDisplayer = function (_React$Component) {
     function LayoutImageDisplayer(props) {
         _classCallCheck(this, LayoutImageDisplayer);
 
-        var _this = _possibleConstructorReturn(this, (LayoutImageDisplayer.__proto__ || Object.getPrototypeOf(LayoutImageDisplayer)).call(this, props));
-
-        _this.login = _this.login.bind(_this);
-        return _this;
+        return _possibleConstructorReturn(this, (LayoutImageDisplayer.__proto__ || Object.getPrototypeOf(LayoutImageDisplayer)).call(this, props));
     }
 
     _createClass(LayoutImageDisplayer, [{
-        key: 'login',
-        value: function login() {}
-    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 'div',
-                { className: 'layout-image-container-item' },
-                _react2.default.createElement('img', { src: __webpack_require__(35),
-                    draggable: true,
-                    onDragStart: this.props.drag })
+                { className: 'layout-image-displayer' },
+                this.props.images.map(function (file, i) {
+                    return _react2.default.createElement('img', { src: file, key: i,
+                        draggable: true,
+                        onDragStart: _this2.props.drag });
+                })
             );
         }
     }]);
@@ -19243,12 +19242,6 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "d7a8816a9f141f3dc80bd640c5795a21.png";
 
 /***/ })
 /******/ ]);

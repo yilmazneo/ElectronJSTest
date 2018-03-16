@@ -23,15 +23,26 @@ export default class TableLayoutDesigner extends React.Component{
         var data = ev.dataTransfer.getData("text");
         let img = new Image();
         img.src = data;
-        ev.target.appendChild(img);
+        ev.target.appendChild(img);        
     }
 
-    render(){        
+    render(){       
+        let items = []
+        for(let i=0;i<this.props.tileCount;i++){
+            items.push(<div key={i} class="layout-grid-tile" onDrop={this.drop} onDragOver={this.allowDrop}></div>)
+        }
         return (
-            <div className="layout-image-container">
-                <LayoutImageDisplayer drag={this.drag} />
-                <div id="div1" onDrop={this.drop} onDragOver={this.allowDrop}>
-                    <b>HERE</b>
+            <div className="layout-designer">
+                <LayoutImageDisplayer drag={this.drag} 
+                images={[
+                    "../../app/resources/images/roundtable.jpg",
+                    "../../app/resources/images/rtable-large.jpg",
+                    "../../app/resources/images/rtable-small.png"
+                ]} />
+                <div id="layout-grid" >
+                    {
+                       items
+                    }
                 </div>
             </div>
         )

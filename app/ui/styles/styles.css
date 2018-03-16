@@ -9,10 +9,31 @@
     font-size: 4rem;
 }
 
-.layout-image-container{
+.layout-image-displayer{
     display: flex;
+    flex-flow: column nowrap;
+    border: 0.5px solid;
 }
 
 .layout-image-container-item{
-    flex-direction: column
+    display:block;
+}
+
+.layout-designer{
+    display: flex;
+    flex-flow: row nowrap;    
+}
+
+#layout-grid{
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    margin-left: 10%;
+}
+
+.layout-grid-tile{
+    border: 0.5px solid;
+    background-color: azure;
+    width:60px;
+    height:60px;
 }

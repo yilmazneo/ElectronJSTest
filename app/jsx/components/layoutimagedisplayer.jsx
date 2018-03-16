@@ -5,21 +5,19 @@ import '../../ui/styles/styles.css'
 
 export default class LayoutImageDisplayer extends React.Component{
     constructor(props){
-        super(props)
-        this.login = this.login.bind(this)        
+        super(props)     
     }    
 
-    login(){
-
-    }
-
-
-    render(){        
+    render(){                
         return (
-            <div className="layout-image-container-item">
-                <img src={require('../../resources/images/roundtable.png')} 
-                draggable={true}
-                onDragStart={this.props.drag} />                
+            <div className="layout-image-displayer">
+                {
+                    this.props.images.map( (file,i) =>                        
+                        <img src={file} key={i}
+                        draggable={true}
+                        onDragStart={this.props.drag} />
+                    )
+                }                                                
             </div>
         )
     }
